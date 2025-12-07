@@ -49,6 +49,8 @@ function setupEventListeners() {
 function handleFileSelect(e) {
     const files = Array.from(e.target.files);
     addFiles(files);
+    // Reset file input to allow selecting the same file again
+    e.target.value = '';
 }
 
 function handleDragOver(e) {
