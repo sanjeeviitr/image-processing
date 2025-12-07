@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing Tool</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖼️ Image Processing Tool</h1>
+            <p>Upload images to extract metadata, detect duplicates, and find similar images</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <h2>Upload Images</h2>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" multiple accept="image/jpeg,image/jpg,image/png" style="display: none;">
+                    <div class="upload-content">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p>Click to upload or drag and drop</p>
+                        <p class="upload-hint">JPG, PNG files only</p>
+                    </div>
+                </div>
+                <div class="uploaded-files" id="uploadedFiles"></div>
+                <div class="action-buttons">
+                    <button id="extractMetadataBtn" class="btn btn-primary" disabled>Extract Metadata</button>
+                    <button id="detectDuplicatesBtn" class="btn btn-secondary" disabled>Detect Duplicates</button>
+                    <button id="detectSimilarBtn" class="btn btn-secondary" disabled>Detect Similar Images</button>
+                    <button id="clearBtn" class="btn btn-danger" disabled>Clear All</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <h2>Results</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="metadata">Metadata</button>
+                    <button class="tab-btn" data-tab="duplicates">Duplicates</button>
+                    <button class="tab-btn" data-tab="similar">Similar Images</button>
+                </div>
+
+                <!-- Metadata Tab -->
+                <div class="tab-content active" id="metadataTab">
+                    <div id="metadataResults"></div>
+                </div>
+
+                <!-- Duplicates Tab -->
+                <div class="tab-content" id="duplicatesTab">
+                    <div id="duplicatesResults"></div>
+                </div>
+
+                <!-- Similar Images Tab -->
+                <div class="tab-content" id="similarTab">
+                    <div id="similarResults"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing images...</p>
+        </div>
+
+        <!-- Error Toast -->
+        <div class="toast" id="errorToast" style="display: none;">
+            <span id="errorMessage"></span>
+            <button class="toast-close" onclick="closeToast()">×</button>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
+
